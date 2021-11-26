@@ -40,11 +40,10 @@ using namespace std;
            0.25 0.25
 */
 vector< vector <float> > initialize_beliefs(vector< vector <char> > grid) {
-	vector< vector <float> > newGrid;
+	float numRows = grid.size();
+	float numCols = grid[0].size();
 
-	// your code here
-	
-	return newGrid;
+	return vector< vector <float> >(numRows, vector<float>(numCols, (1/(numRows * numCols))));	
 }
 
 /**
