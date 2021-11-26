@@ -8,9 +8,10 @@ V2 (in-progress): added C++ classes.
 
 To compile and run C++
 
-g++ main.cpp matrix.cpp
-cpp/.a.out
+> g++ main.cpp matrix.cpp
+> cpp/.a.out
 
 ## P2
 
 In progress
+> g++ -std=c++11 tests.cpp
