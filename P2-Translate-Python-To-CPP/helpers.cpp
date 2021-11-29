@@ -100,7 +100,7 @@ vector < vector <float> > blur(vector < vector < float> > grid, float blurring) 
 	for (int i = 0; i < numRows; ++i) {
 		for (int j = 0; j < numCols; ++j) {
 			float grid_element = grid[i][j];
-			for (int dx = -1; dx < 2, ++dx) {
+			for (int dx = -1; dx < 2; ++dx) {
 				for (int dy = -1; dy < 2; ++dy) {
 					float multiply_by = window[dx+1][dy+1];
 					float shift_y = (i + dy) % numRows;
