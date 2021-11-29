@@ -36,20 +36,19 @@ using namespace std;
 vector< vector<float> > normalize(vector< vector <float> > grid) {
 	float totalProbability = 0.0;
 	vector< vector<float> > newGrid;
+
 	for (int i = 0; i < grid.size(); ++i) {
 		totalProbability += accumulate(grid[i].begin(), grid[i].end(), 0);
 	}
 
 	for (int i = 0; i < grid.size(); ++i) {
 		vector<float> normalizedRow;
-		for (int j = 0; i < grid[0].size(); ++j) {
+		for (int j = 0; j < grid[0].size(); ++j) {
 			float element = grid[i][j] / totalProbability;
 			normalizedRow.push_back(element);
 		}
 		newGrid.push_back(normalizedRow);
 	}
-
-	
 
 	return newGrid;
 }
