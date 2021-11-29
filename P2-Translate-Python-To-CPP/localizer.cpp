@@ -18,27 +18,6 @@
 
 using namespace std;
 
-/**
-	TODO - implement this function 
-    
-    Initializes a grid of beliefs to a uniform distribution. 
-
-    @param grid - a two dimensional grid map (vector of vectors 
-    	   of chars) representing the robot's world. For example:
-    	   
-    	   g g g
-    	   g r g
-    	   g g g
-		   
-		   would be a 3x3 world where every cell is green except 
-		   for the center, which is red.
-
-    @return - a normalized two dimensional grid of floats. For 
-           a 2x2 grid, for example, this would be:
-
-           0.25 0.25
-           0.25 0.25
-*/
 vector< vector <float> > initialize_beliefs(vector< vector <char> > grid) {
 	float numRows = grid.size();
 	float numCols = grid[0].size();
@@ -83,16 +62,18 @@ vector< vector <float> > initialize_beliefs(vector< vector <char> > grid) {
     @return - a normalized two dimensional grid of floats 
          representing the updated beliefs for the robot. 
 */
-vector< vector <float> > move(int dy, int dx, 
-  vector < vector <float> > beliefs,
-  float blurring) 
+vector< vector <float> > move(int dy, int dx, vector < vector <float> > beliefs, float blurring) 
 {
+	int numRows = beliefs.size();
+	int numCols = beliefs[0].size();
 
-  vector < vector <float> > newGrid;
+	int x_shift = dx % numCols;
+	int y_shift = dy % numRows;
+  	vector < vector <float> > newGrid;
 
-  // your code here
 
-  return blur(newGrid, blurring);
+
+  	return blur(newGrid, blurring);
 }
 
 

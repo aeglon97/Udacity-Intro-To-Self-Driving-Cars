@@ -75,11 +75,41 @@ vector< vector<float> > normalize(vector< vector <float> > grid) {
     	   has been blurred.
 */
 vector < vector <float> > blur(vector < vector < float> > grid, float blurring) {
+	int numRows = grid.size();
+	int numCols = grid[0].size();
 
-	vector < vector <float> > newGrid;
-	
-	// your code here
+	float center_probability = 1.0 - blurring;
+	float corner_probability = blurring / 12.00;
+	float adjacent_probability = blurring / 6.0;	
 
+	vector < vector<float> > window (numRows, vector<float> (numCols));
+	window[0][0] = corner_probability;
+	window[0][1] = adjacent_probability;
+	window[0][2] = corner_probability;
+
+	window[1][0] = adjacent_probability;
+	window[1][1] = center_probability;
+	window[1][2] = adjacent_probability;
+
+	window[2][0] = corner_probability;
+	window[2][1] = adjacent_probability;
+	window[2][2] = corner_probability;
+
+	vector < vector <float> > newGrid (numRows, vector<float> (numCols, 0));
+
+	for (int i = 0; i < numRows; ++i) {
+		for (int j = 0; j < numCols; ++j) {
+			float grid_element = grid[i][j];
+			for (int dx = -1; dx < 2, ++dx) {
+				for (int dy = -1; dy < 2; ++dy) {
+					float multiply_by = window[dx+1][dy+1];
+					float shift_y = (i + dy) % numRows;
+					float shift_x = (j + dx) % numCols;
+					newGrid[shift_y][shift_x] += multiply_by * grid_element;
+				}
+			}
+		}
+	}
 	return normalize(newGrid);
 }
 
