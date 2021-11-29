@@ -69,8 +69,8 @@ vector< vector <float> > move(int dy, int dx, vector < vector <float> > beliefs,
 
 	int x_shift = dx % numCols;
 	int y_shift = dy % numRows;
-  	vector < vector <float> > newGrid;
 
+  	vector < vector <float> > newGrid;
 
 
   	return blur(newGrid, blurring);
