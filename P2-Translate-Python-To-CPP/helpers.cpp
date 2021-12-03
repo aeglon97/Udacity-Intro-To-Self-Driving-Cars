@@ -38,7 +38,9 @@ vector< vector<float> > normalize(vector< vector <float> > grid) {
 	vector< vector<float> > newGrid;
 
 	for (int i = 0; i < grid.size(); ++i) {
-		totalProbability += accumulate(grid[i].begin(), grid[i].end(), 0);
+		for (int j = 0; j < grid[0].size(); ++j) {
+			totalProbability += grid[i][j];
+		}
 	}
 
 	for (int i = 0; i < grid.size(); ++i) {
@@ -93,7 +95,7 @@ vector < vector <float> > blur(vector < vector < float> > grid, float blurring) 
 	float center_probability = 1.0 - blurring;
 	float corner_probability = blurring / 12.00;
 	float adjacent_probability = blurring / 6.0;	
-
+	
 	vector < vector<float> > window (numRows, vector<float> (numCols));
 	window[0][0] = corner_probability;
 	window[0][1] = adjacent_probability;
@@ -107,17 +109,22 @@ vector < vector <float> > blur(vector < vector < float> > grid, float blurring) 
 	window[2][1] = adjacent_probability;
 	window[2][2] = corner_probability;
 
-	vector < vector <float> > newGrid (numRows, vector<float> (numCols, 0));
+	vector < vector <float> > newGrid = zeros(numRows, numCols);
 
 	for (int i = 0; i < numRows; ++i) {
 		for (int j = 0; j < numCols; ++j) {
 			float grid_element = grid[i][j];
-			for (int dx = -1; dx < 2; ++dx) {
-				for (int dy = -1; dy < 2; ++dy) {
+
+			for (int dx = -1; dx < 2; dx++) {
+				for (int dy = -1; dy < 2; dy++) {
 					float multiply_by = window[dx+1][dy+1];
-					float shift_y = (i + dy) % numRows;
-					float shift_x = (j + dx) % numCols;
-					newGrid[shift_y][shift_x] += multiply_by * grid_element;
+					int shift_i = i + dy + numRows;
+					int shift_j = j + dx + numCols;
+
+					int new_i = shift_i % numRows;
+					int new_j = shift_j % numCols;
+
+					newGrid[new_i][new_j] += multiply_by * grid_element;
 				}
 			}
 		}

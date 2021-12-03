@@ -72,7 +72,8 @@ vector< vector <float> > move(int dy, int dx, vector < vector <float> > beliefs,
 
   	vector < vector <float> > newGrid;
 
-
+	//TODO: implement
+	cout << "move() function not implemented yet." << endl;
   	return blur(newGrid, blurring);
 }
 
