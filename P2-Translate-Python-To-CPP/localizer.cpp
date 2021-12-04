@@ -70,10 +70,15 @@ vector< vector <float> > move(int dy, int dx, vector < vector <float> > beliefs,
 	int x_shift = dx % numCols;
 	int y_shift = dy % numRows;
 
-  	vector < vector <float> > newGrid;
+  	vector < vector <float> > newGrid = zeros(numRows, numCols);
 
-	//TODO: implement
-	cout << "move() function not implemented yet." << endl;
+	for (int i = 0; i < numRows; ++i) {
+		for (int j = 0; j < numCols; ++j) {
+			int new_i = (i + dy + numRows) % numRows;
+			int new_j = (j + dx + numCols) % numCols;
+			newGrid[new_i][new_j] = beliefs[i][j];
+		}
+	}
   	return blur(newGrid, blurring);
 }
 
