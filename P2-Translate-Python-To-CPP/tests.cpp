@@ -129,8 +129,6 @@ bool test_initialize() {
 	A = h * w;
 	belief = 1.0 / A;
 
-
-
 	int i, j;
 	vector <float> row;
 	for (i=0; i<map.size(); i++) {
@@ -168,7 +166,7 @@ bool test_move() {
 	int dx, dy;
 	dx = 1;
 	dy = 1;
-	float blurring = 1.0;
+	float blurring = 0.0;
 
 	correct = zeros(3,3);
 	correct[0][0] = 1.0;

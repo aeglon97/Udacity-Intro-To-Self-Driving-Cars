@@ -120,15 +120,20 @@ vector< vector <float> > move(int dy, int dx, vector < vector <float> > beliefs,
     @return - a normalized two dimensional grid of floats 
     	   representing the updated beliefs for the robot. 
 */
-vector< vector <float> > sense(char color, 
-	vector< vector <char> > grid, 
-	vector< vector <float> > beliefs, 
-	float p_hit,
-	float p_miss) 
+vector< vector <float> > sense(char color, vector< vector <char> > grid, vector< vector <float> > beliefs, float p_hit, float p_miss) 
 {
+	int numRows = grid.size();
+	int numCols = grid[0].size();
 	vector< vector <float> > newGrid;
 
-	// your code here
+	for (int i = 0; i < numRows; ++i) {
+		vector<float> row;
+		for (int j = 0; j < numCols; ++j) {
+			bool hit = (color == grid[i][j]);
+			row.push_back(beliefs[i][j] * (hit * p_hit + (1-hit) * p_miss));
+		}
+		newGrid.push_back(row);
+	}
 
 	return normalize(newGrid);
 }
