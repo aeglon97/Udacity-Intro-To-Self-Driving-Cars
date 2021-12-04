@@ -2,16 +2,21 @@
 
 
 ## P1
-V1. Create a matrix class which can be used for various forms of matrix transformation operations (inverse, transpose, identity)
 
-V2 (in-progress): added C++ classes.
+### Goal: Fill out a `Matrix` class with matrix mathematics methods.
 
-To compile and run C++
+Description: Create a matrix class which can be used for various forms of matrix transformation operations (inverse, transpose, identity). Linear algebra.
+
+To compile and run the C++ files:
 
 > g++ main.cpp matrix.cpp
 > cpp/.a.out
 
 ## P2
 
-In progress
+### Goal: Implement a basic Histogram Filter in C++.
+
+Description: Implement move() and sense() functions of a robot in a 2D world. Translate into C++ from Python code.
+
+To compile and run in the terminal:
 > g++ -std=c++11 tests.cpp
